@@ -1,21 +1,9 @@
 import React from 'react';
 import {Button, Col, Divider, Input, Row} from "antd";
-import {useSelector, useDispatch} from "react-redux";
-import {addTaskActionCreator} from "../../store";
 
-const TaskAdd = () => {
-    const dispatch = useDispatch();
-    let taskDescriptionInput = useSelector(initialState => initialState.newTaskInputText)
-    const onTaskAdd = () => {
-        dispatch(addTaskActionCreator(taskDescriptionInput))
-    }
 
-    const setInputTaskAdd = (e) => {
-        dispatch({
-            type: "GetInputValue",
-            value: e.currentTarget.value
-        })
-    }
+const TaskAdd = ({taskDescriptionInput, onTaskAdd, setInputTaskAdd}) => {
+
 
     return (
         <>

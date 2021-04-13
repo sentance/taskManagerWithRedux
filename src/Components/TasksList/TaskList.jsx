@@ -1,18 +1,9 @@
 import React from 'react';
 import {Button, Col, Divider, List, Typography} from "antd";
 import {CheckOutlined, DeleteOutlined} from "@ant-design/icons";
-import {useDispatch, useSelector} from "react-redux";
+import * as classes from './TaskList.module.css';
+const TaskList = ({deleteTask, tasks}) => {
 
-const TaskList = () => {
-    const dispatch = useDispatch();
-    const tasks = useSelector(state => state.tasks);
-    const deleteTask = (id) =>{
-       dispatch({
-           type: "RemoveTask",
-           id: id
-       })
-
-    }
     return(
         <>
         <Divider orientation="left">Tasks</Divider>
@@ -20,14 +11,14 @@ const TaskList = () => {
                 bordered
                 dataSource={tasks}
                 renderItem={item => (
-                    <List.Item key={item.id}>
+                    <List.Item key={item.id} >
                         <Col span={18}>
                             <Typography.Text mark>[ITEM]</Typography.Text>
                             {item.taskDescription}
                         </Col>
                         <Col span={6} style={{float: 'right'}}>
-                            <Button onClick={()=>deleteTask(item.id)} danger><DeleteOutlined/></Button>
-                            <Button><CheckOutlined/></Button>
+                            <Button className={classes.button} onClick={()=>deleteTask(item.id)} danger><DeleteOutlined/></Button>
+                            <Button className={classes.button}><CheckOutlined/></Button>
                         </Col>
                     </List.Item>
                 )}
